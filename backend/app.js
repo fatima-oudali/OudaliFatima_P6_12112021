@@ -2,7 +2,9 @@ const express = require("express"); //on importe express
 const bodyParser = require("body-parser");
 const app = express(); //on crée une application express
 const mongoose = require("mongoose"); //on importe mongoose
+
 const saucesRoutes = require('./routes/sauces');
+const userRoutes = require('./routes/user');
 
 mongoose
   .connect(
@@ -28,6 +30,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use('/api/sauces', saucesRoutes);
+app.use('/api/auth', userRoutes);
 
 //on exporte l'application créée pour qu'on puisse y accéder depuis les autres fichiers de notre projet
 module.exports = app;
