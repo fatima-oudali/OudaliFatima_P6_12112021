@@ -5,6 +5,7 @@ const mongoose = require("mongoose"); //on importe mongoose
 
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
+const path = require('path');
 
 mongoose
   .connect(
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/sauces', saucesRoutes);
 app.use('/api/auth', userRoutes);
 
