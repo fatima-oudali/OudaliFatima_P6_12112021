@@ -9,7 +9,6 @@ const path = require('path');
 
 var helmet = require('helmet');
 app.use(helmet());
-app.disable('x-powered-by');
 
 mongoose
   .connect(

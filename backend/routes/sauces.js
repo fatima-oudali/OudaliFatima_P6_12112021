@@ -18,7 +18,9 @@ router.get("/:id", auth, sauceCtrl.getOneSauce);
 
 router.get("/", auth, sauceCtrl.getAllSauces);
 
-router.post("/:id/like", auth, likeCtrl.likeSauce);
+router.post("/:id/like", auth, likeCtrl.feedbackSauce);
+
+
 
 
 
