@@ -7,12 +7,16 @@ const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 const path = require('path');
 
+require("dotenv").config(); //importation pour l'utilisation des variables d'environnements
+
 var helmet = require('helmet');
 app.use(helmet());
 
+
+//connection à la base de données mongoDB
 mongoose
   .connect(
-    "mongodb+srv://fatazed:piiquante@cluster0.s1djv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.s1djv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
