@@ -38,8 +38,9 @@ const errorHandler = (error) => {
   }
 };
 
-const server = http.createServer(app); //on appelle la méthode createServer du package http, qui prend comme argument la fonction qui va être appelée à chaque requête reçue par le serveur; ici la fonction est notre application créée par express.
-
+//on appelle la méthode createServer du package http, 
+//qui prend comme argument la fonction qui va être appelée à chaque requête reçue par le serveur; ici la fonction est notre application créée par express.
+const server = http.createServer(app);
 server.on('error', errorHandler);
 server.on('listening', () => {
   const address = server.address();

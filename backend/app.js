@@ -1,11 +1,12 @@
-const express = require("express"); //on importe express
-const bodyParser = require("body-parser");
-const app = express(); //on crée une application express
-const mongoose = require("mongoose"); //on importe mongoose
+//Importation des packages de Node.js
 
+const express = require("express"); //importation du package Express
+const bodyParser = require("body-parser"); //importation du package BodyParser
+const app = express(); //création d'une application Express
+const mongoose = require("mongoose"); //importation du package Mongoose
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
-const path = require('path');
+const path = require('path'); //Importation de Path afin de définir les chemins
 
 require("dotenv").config(); //importation pour l'utilisation des variables d'environnements
 
@@ -13,7 +14,7 @@ var helmet = require('helmet');
 app.use(helmet());
 
 
-//connection à la base de données mongoDB
+//connection à la base de données MongoDB avec id et mot de passe
 mongoose
   .connect(
     `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.s1djv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
@@ -22,6 +23,8 @@ mongoose
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 
+
+//Définition des CORS
   app.use((req, res, next) => {
   //Qui peut accéder à l'API
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -40,6 +43,7 @@ mongoose
 
 app.use(bodyParser.json());
 
+//Gestion des principaux chemins de l'API: Sauces, auth et images
 //Gestion des routes principales
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/sauces', saucesRoutes);

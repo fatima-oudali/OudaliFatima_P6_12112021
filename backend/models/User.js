@@ -1,5 +1,7 @@
+//Importation du package Mongoose pour la DB
 const mongoose = require('mongoose');
 
+//Importation du package mongoose-unique-validator
 const uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = mongoose.Schema({

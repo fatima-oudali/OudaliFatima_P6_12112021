@@ -1,15 +1,20 @@
+//Appel du plugin "Multer"
 const multer = require('multer');
 
+//Formats des fichiers acceptés
 const MIME_TYPES = {
   'image/jpg': 'jpg',
   'image/jpeg': 'jpg',
   'image/png': 'png'
 };
 
+
+//Où seront stockées les images
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, 'images');
   },
+  //création d'un nom de fichier image unique et remplacement des espaces par des underscores
   filename: (req, file, callback) => {
     const name = file.originalname.split(' ').join('_');
     const extension = MIME_TYPES[file.mimetype];

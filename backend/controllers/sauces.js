@@ -6,6 +6,7 @@ exports.createSauce = (req, res, next) => {
   delete sauceObject._id;
   const sauce = new Sauce({
     ...sauceObject,
+    //les images sont appelées via leur URL
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`,
@@ -36,7 +37,7 @@ exports.modifySauce = (req, res, next) => {
 exports.deleteSauce = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id })
     .then(sauce => {
-      const filename = sauce.imageUrl.split('/images/')[1];
+      const filename = sauce.imageUrl.split('/images/')[1]; //supprimer une seule image
       fs.unlink(`images/${filename}`, () => {
         Sauce.deleteOne({ _id: req.params.id })
           .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
@@ -58,8 +59,10 @@ exports.getOneSauce = (req, res, next) => {
     .catch((error) => res.status(404).json({ error }));
 };
 
+//appel de toutes les sauces avec request et response, et next pour passer au prochain controller
 exports.getAllSauces = (req, res, next) => {
-  Sauce.find()
+  //demande à la base de données les sauces avec .find()
+  Sauce.find() 
     .then((sauces) => res.status(200).json(sauces))
     .catch((error) => res.status(400).json({ error }));
 };

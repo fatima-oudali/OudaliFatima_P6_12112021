@@ -1,5 +1,8 @@
+//Importation du package Mongoose pour la DB
 const mongoose = require('mongoose');
 
+
+//Définition du schéma pour mongoose sous forme JSON qui permet de structurer la base de données
 const sauceSchema = mongoose.Schema({
     userId: {type: String, required: true},
     name: {type: String, required: true},
