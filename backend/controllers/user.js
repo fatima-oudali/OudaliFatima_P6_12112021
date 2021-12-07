@@ -6,6 +6,7 @@ require("dotenv").config(); //importation pour l'utilisation des variables d'env
 
 //l'enregistrement de nouveaux utilisateurs
 exports.signup = (req, res, next) => {
+    //La fonction hash de bcrypt crypte le mdp avec un algorithme unidirectionnel, d'une manière quasi indécryptable
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
         const user = new User({

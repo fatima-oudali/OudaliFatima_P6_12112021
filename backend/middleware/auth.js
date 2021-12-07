@@ -1,6 +1,8 @@
-const jwt = require('jsonwebtoken'); //on récupère le package jsonwebtoken
+//importation du package jsonwebtoken
+const jwt = require('jsonwebtoken'); 
 
-require("dotenv").config(); //importation pour l'utilisation des variables d'environnements
+//importation pour l'utilisation des variables d'environnements
+require("dotenv").config(); 
 
 module.exports = (req,res, next) => {
     try {

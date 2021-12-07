@@ -5,7 +5,6 @@ exports.feedbackSauce = async (req, res, next) => {
   const { id } = req.params;
 
   //le switch sert à savoir quelle est l'action demandée (1 = like, 0 = retrait du like / dislike, -1 = dislike)
-
   switch (like) {
 
     //On ajoute le userId au tableau usersLiked puis on incrémente le like de 1
@@ -28,7 +27,7 @@ exports.feedbackSauce = async (req, res, next) => {
           { $pull: { usersLiked: userId }, $inc: { likes: -1 } }
         )
           .then(() => res.status(200).json({ message: "Updated" }))
-          .catch((error) => res.status(400).json({ error: "Error" }));
+          .catch((error) => res.status(400).json({ error }));
       
       }else if (sauce.usersDisliked.includes(userId)) {
         return Sauce.updateOne(
@@ -36,7 +35,7 @@ exports.feedbackSauce = async (req, res, next) => {
           { $pull: { usersDisliked: userId }, $inc: { dislikes: -1 } }
         )
           .then(() => res.status(200).json({ message: "Updated" }))
-          .catch((e) => res.status(400).json({ error: "Error" }));
+          .catch((error) => res.status(400).json({ error}));
       }else {
           return res 
           .status (400)

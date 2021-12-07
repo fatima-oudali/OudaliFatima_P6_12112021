@@ -2,13 +2,15 @@
 
 const express = require("express"); //importation du package Express
 const bodyParser = require("body-parser"); //importation du package BodyParser
-const app = express(); //création d'une application Express
 const mongoose = require("mongoose"); //importation du package Mongoose
+const path = require('path'); //Importation de Path afin de définir les chemins
+require("dotenv").config(); //importation pour l'utilisation des variables d'environnements
+
+const app = express(); //création d'une application Express
+
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
-const path = require('path'); //Importation de Path afin de définir les chemins
 
-require("dotenv").config(); //importation pour l'utilisation des variables d'environnements
 
 var helmet = require('helmet');
 app.use(helmet());

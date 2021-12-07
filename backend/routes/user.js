@@ -1,6 +1,7 @@
 //Importation du module router d'express
 const express = require('express');
 const router = express.Router();
+
 //création du chemin "user" dans controllers
 const userCtrl = require('../controllers/user');
 
